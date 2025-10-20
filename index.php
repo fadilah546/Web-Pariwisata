@@ -157,27 +157,27 @@
 
         <a class="kategori flex-shrink-0 px-10 py-5 bg-blue-500 text-white rounded-lg shadow-lg shadow-blue-500/40
       hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=edukasi">
-          <h1 class=" font-semibold">Edukasi</h1>
+          <h1 class=" font-semibold" style="text-align: center;">Edukasi</h1>
         </a>
 
         <a class="kategori flex-shrink-0 px-10 py-5 bg-green-500 text-white rounded-lg shadow-lg shadow-green-500/40
       hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=alam">
-          <h1 class=" font-semibold">Alam</h1>
+          <h1 class=" font-semibold" style="text-align: center;">Alam</h1>
         </a>
 
         <a class="kategori flex-shrink-0 px-10 py-5 bg-orange-500 text-white rounded-lg shadow-lg shadow-orange-500/40
       hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=kuliner">
-          <h1 class=" font-semibold">Kuliner</h1>
+          <h1 class=" font-semibold" style="text-align: center;">Kuliner</h1>
         </a>
 
         <a class="kategori flex-shrink-0 px-10 py-5 bg-pink-500 text-white rounded-lg shadow-lg shadow-pink-500/40
       hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=rekreasi" >
-          <h1 class=" font-semibold">Rekreasi</h1>
+          <h1 class=" font-semibold" style="text-align: center;">Rekreasi</h1>
         </a>
 
         <a class="kategori flex-shrink-0 px-10 py-5 bg-purple-500 text-white rounded-lg shadow-lg shadow-purple-500/40
       hover:bg-purple-600 hover:shadow-xl hover:shadow-purple-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=semua">
-          <h1 class=" font-semibold">Semua</h1>
+          <h1 class=" font-semibold" style="text-align: center;">Semua</h1>
         </a>
 
       </div>
