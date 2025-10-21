@@ -21,50 +21,57 @@
 <body class="font-sans bg-gray-50">
 
   <!-- Navbar -->
-  <nav class="backdrop-blur-md hover:backdrop-blur-3xl bg-white/20 border-b border-white/30 shadow-lg p-4 flex items-center justify-between fixed top-0 w-full z-50 
-  transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+ <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/20 border-b border-white/30 shadow-lg p-4
+     flex items-center justify-between transition-all duration-500 ease-in-out">
 
-    <div class="flex items-center space-x-2">
-      <img src="assets/images/logo.png" alt="WisataKu"
-        class="h-12 w-12 rounded-2xl shadow-md ring-1 ring-white/30">
-      <span class="font-semibold text-lg text-gray-900 drop-shadow-sm">WisataKu</span>
-    </div>
+  <!-- Logo -->
+  <div class="flex items-center space-x-2">
+    <img src="assets/images/logo.png" alt="WisataKu"
+      class="h-12 w-12 rounded-2xl shadow-md ring-1 ring-white/30">
+    <span class="font-semibold text-lg text-gray-900 drop-shadow-sm">WisataKu</span>
+  </div>
 
-    <div class="hidden md:flex-1 md:flex md:justify-center">
-      <div class="flex w-1/2 items-center bg-white/30 border border-white/20 rounded-full overflow-hidden 
-      backdrop-blur-xl shadow-inner shadow-white/10 
-      transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-blue-400/50">
-      <form action="index.php?p=search" method="POST">
-          <input type="text" placeholder="Cari destinasi..." name="search"
-          class="flex-grow px-4 py-2 bg-transparent text-gray-900 placeholder-gray-600 outline-none" autocomplete="off">
-        <button type="submit" class="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-medium px-5 py-2 rounded-r-full 
-                     hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20" name="cari" >
-          Cari
-        </button>
-      </form>
-      </div>
-    </div>
-
-    <div class="hidden md:flex space-x-3">
-      <button class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                   text-gray-900 hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
-        Masuk
+  <!-- Search bar (desktop only) -->
+  <div class="hidden md:flex flex-1 justify-center">
+    <form action="index.php?p=search" method="POST"
+      class="flex w-1/2 items-center bg-white/30 border border-white/20 rounded-full overflow-hidden
+             backdrop-blur-xl shadow-inner shadow-white/10 transition-all duration-300 ease-out
+             focus-within:ring-2 focus-within:ring-blue-400/50">
+      <input type="text" placeholder="Cari destinasi..." name="search"
+        class="flex-grow px-4 py-2 bg-transparent text-gray-900 placeholder-gray-600 outline-none"
+        autocomplete="off">
+      <button type="submit" name="cari"
+        class="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-medium px-5 py-2 rounded-r-full
+               hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20">
+        Cari
       </button>
-      <button class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                   text-gray-900 hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
-        Keranjang
-      </button>
-    </div>
+    </form>
+  </div>
 
-    <div class="flex md:hidden space-x-3">
-      <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                   hover:bg-white/50 transition-all duration-300">🔍</button>
-      <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                   hover:bg-white/50 transition-all duration-300">🛒</button>
-      <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                   hover:bg-white/50 transition-all duration-300">👤</button>
-    </div>
-  </nav>
+  <!-- Buttons (desktop only) -->
+  <div class="hidden md:flex space-x-3">
+    <button
+      class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
+             hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
+      Masuk
+    </button>
+    <button
+      class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
+             hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
+      Keranjang
+    </button>
+  </div>
+
+  <!-- Mobile buttons -->
+  <div class="flex md:hidden space-x-3">
+    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                 hover:bg-white/50 transition-all duration-300">🔍</button>
+    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                 hover:bg-white/50 transition-all duration-300">🛒</button>
+    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                 hover:bg-white/50 transition-all duration-300">👤</button>
+  </div>
+</nav>
 
 
 
@@ -255,3 +262,4 @@
 <script src="kategori/kategori.js"></script>
 
 </html>
+
