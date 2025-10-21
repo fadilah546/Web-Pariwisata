@@ -16,6 +16,9 @@ switch($p){
     case 'rekreasi':
         require_once "kategori/rekreasi.php";
         break;
+    case 'search':
+        require_once "kategori/search.php";
+        break;
     
 default:
     require_once "kategori/semua.php";
