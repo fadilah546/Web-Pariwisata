@@ -1,265 +1,476 @@
-<?php error_reporting(0) ?>
+                <?php
+                // Ambil parameter "page" dari URL
+                if (!isset($_GET['page'])) {
+                    header('Location: index.php?page=dashboard');
+                    exit();
+                }
+                ?>
 
-
-<!DOCTYPE html>
-<html lang="id">
-
+                
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-9">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WisataKu - Home</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>sistem Informasi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#dbe5f0ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#837f7fff" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" href="assets/css/adminlte.css" as="style" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+          crossorigin="anonymous" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/adminlte.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Swiper CSS & JS -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+
+    <style>
+    .custom-sidebar {
+    background-color: #1E3A8A; /* biru navy */
+}
+
+
+      .sidebar-menu .nav-icon {
+  font-size: 1.4rem; /* ukuran icon, bisa ubah ke 1.6rem kalau mau lebih besar */
+  margin-right: 10px;
+  width: 25px; /* biar sejajar semua icon */
+  text-align: center;
+
+}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .navbar-custom {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 0.6rem 1.5rem;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: #212529;
+      font-size: 1.2rem;
+      margin-right: 1.5rem;
+    }
+
+    .nav-link {
+      color: #212529;
+      font-weight: 500;
+      margin-right: 1rem;
+    }
+
+    .nav-link:hover {
+      color: #ccd1daff;
+    }
+
+    .search-box {
+      position: relative;
+      margin-left: 15px;
+    }
+
+    .search-box input {
+      border-radius: 30px;
+      padding-left: 35px;
+      width: 180px;
+      transition: width 0.3s ease;
+    }
+
+    .search-box input:focus {
+      width: 240px;
+    }
+
+    .search-box i {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      color: #888;
+    }
+
+    .icon-btn {
+      border: none;
+      background: none;
+      margin: 0 10px;
+      position: relative;
+    }
+
+    .icon-btn i {
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    .profile-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 10px;
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+      font-family: 'Poppins', sans-serif{
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+
+    .card {
+      display: flex;
+    flex-direction: row-reverse; /* 🔁 ini yang bikin ikon di kanan */
+    align-items: center;
+    justify-content: space-between; /* biar rapi antara teks dan icon */
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 240px;
+    }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* ICON */
+.icon {
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.icon.green { background-color: #e6f8ec; color: #2ecc71; }
+.icon.blue { background-color: #e6f0ff; color: #084872ff; }
+.icon.purple { background-color: #f2e6ff; color: #9b59b6; }
+.icon.orange { background-color: #fff4e6; color: #e67e22; }
+
+/* TEXT */
+.text p {
+  margin: 0;
+  font-weight: 500;
+  color: #555;
+}
+
+.text h3 {
+  margin: 2px 0;
+  font-size: 22px;
+  font-weight: bold; /* no bold*/ 
+}
+
+.text small {
+  font-size: 12px;
+  color: #2ac016ff;
+}
+
+.flex gap-4 w-full {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flek-1 bg-white p-4 {
+  flex: 2; /* lebih besar */
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.flex-1 bg-white p-4 {
+  flex: 1; /* lebih kecil */
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.judul {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subjudul {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+  </style>
 </head>
 
-<body class="font-sans bg-gray-50">
-
-  <!-- Navbar -->
- <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/20 border-b border-white/30 shadow-lg p-4
-     flex items-center justify-between transition-all duration-500 ease-in-out">
-
-  <!-- Logo -->
-  <div class="flex items-center space-x-2">
-    <img src="assets/images/logo.png" alt="WisataKu"
-      class="h-12 w-12 rounded-2xl shadow-md ring-1 ring-white/30">
-    <span class="font-semibold text-lg text-gray-900 drop-shadow-sm">WisataKu</span>
-  </div>
-
-  <!-- Search bar (desktop only) -->
-  <div class="hidden md:flex flex-1 justify-center">
-    <form action="index.php?p=search" method="POST"
-      class="flex w-1/2 items-center bg-white/30 border border-white/20 rounded-full overflow-hidden
-             backdrop-blur-xl shadow-inner shadow-white/10 transition-all duration-300 ease-out
-             focus-within:ring-2 focus-within:ring-blue-400/50">
-      <input type="text" placeholder="Cari destinasi..." name="search"
-        class="flex-grow px-4 py-2 bg-transparent text-gray-900 placeholder-gray-600 outline-none"
-        autocomplete="off">
-      <button type="submit" name="cari"
-        class="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-medium px-5 py-2 rounded-r-full
-               hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20">
-        Cari
-      </button>
-    </form>
-  </div>
-
-  <!-- Buttons (desktop only) -->
-  <div class="hidden md:flex space-x-3">
-    <button
-      class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
-             hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
-      Masuk
-    </button>
-    <button
-      class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
-             hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
-      Keranjang
-    </button>
-  </div>
-
-  <!-- Mobile buttons -->
-  <div class="flex md:hidden space-x-3">
-    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                 hover:bg-white/50 transition-all duration-300">🔍</button>
-    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                 hover:bg-white/50 transition-all duration-300">🛒</button>
-    <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
-                 hover:bg-white/50 transition-all duration-300">👤</button>
-  </div>
-</nav>
 
 
+   <!-- ========== HEADER ========== -->
+<body class="sidebar-expand-lg sidebar-open bg-body-tertiary">
 
-  <!-- Tambahin padding-top biar konten gak ketiban navbar -->
-  <div class="">
+      <!-- ========== NAVBAR ========== -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
 
-    <!-- Hero Section (lebih kecil tapi tetap slide) -->
-    <section class="relative text-center text-white h-[55vh] md:h-[70vh] flex flex-col items-center justify-center overflow-hidden">
+        <!-- Kiri: Brand + Menu -->
+        <div class="d-flex align-items-center">
+          <span class="navbar-brand me-4">Admin Dashboard</span>
 
-      <!-- Swiper Background -->
-      <div class="absolute inset-0 z-0">
-        <div class="swiper mySwiper h-full w-full">
-          <div class="swiper-wrapper PX-5">
-            <div class="swiper-slide">
-              <img src="assets/images/bali.jpg" alt="Bali" class="w-full h-full object-cover" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/images/rajaampat.jpg" alt="Raja Ampat" class="w-full h-full object-cover" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/images/bromo.jpg" alt="Bromo" class="w-full h-full object-cover" />
-            </div>
-            <div class="swiper-slide">
-              <img src="assets/images/labuanbajo.jpg" alt="Labuan Bajo" class="w-full h-full object-cover" />
-            </div>
+          <div class="d-flex ms-4">
+            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">Contact</a>
           </div>
         </div>
 
-        <!-- Lapisan gelap agar teks lebih terlihat -->
-        <div class="absolute inset-0 bg-black/40"></div>
-      </div>
-
-      <!-- Teks di atas background -->
-      <div class="relative mt-6 px-6 py-10 rounded-[2rem] hover:backdrop-blur-3xl  
-    border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.1)] 
-    overflow-hidden transition-all duration-500 hover:scale-[1.02]">
-
-        <!-- Efek pantulan dalam -->
-        <div class="absolute inset-0 bg-gradient-to-br from-pink-400/30 via-transparent to-blue-400/30 
-              mix-blend-overlay blur-2xl opacity-70 animate-pulse"></div>
-
-        <!-- Konten utama -->
-        <div class="relative z-10 text-center text-white drop-shadow-lg">
-          <h1 class="text-xl md:text-[42px] font-bold mb-5">
-            Jelajahi Purbalingga Bersama Kami
-          </h1>
-          <p class="text-sm md:text-base font-medium mb-6">
-            Temukan destinasi wisata terbaik dengan paket perjalanan yang tak terlupakan
-          </p>
-          <a href="#kategori" class="bg-gradient-to-r from-orange-400 to-orange-600 
-                   hover:from-orange-500 hover:to-orange-700 
-                   px-6 py-3 rounded-full text-sm md:text-base font-semibold 
-                   shadow-lg transition-transform hover:scale-110 active:scale-95">
-            Jelajahi Sekarang
-          </a>
-        </div>
-      </div>
-      <!-- Efek gradasi blur ultra halus ke bawah -->
-      <div class="absolute bottom-0 left-0 w-full h-10 pointer-events-none select-none">
-
-        <!-- Lapisan paling bawah: kabut lembut putih -->
-        <div class="absolute bottom-0 left-0 w-full h-1/3 
-              bg-gradient-to-b from-white/5 to-white"></div>
-      </div>
-
-
-    </section>
-
-    <!-- Swiper Script -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        loop: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
-        effect: "fade",
-        fadeEffect: {
-          crossFade: true
-        },
-      });
-    </script>
-
-    <!-- Kategori Wisata -->
-    <section id="kategori" class="mt-10 px-6">
-      <h1 class="text-xl font-bold text-center md:text-3xl">Kategori Wisata</h1>
-      <h1 class="text-md font-sans text-center mb-5 ">Pilih jenis petualangan yang ingin Anda nikmati</h1>
-
-      <div class="flex lg:grid gap-6 overflow-x-auto lg:overflow-visible 
-              grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4 pb-2
-              scrollbar-hide">
-
-        <a class="kategori flex-shrink-0 px-10 py-5 bg-blue-500 text-white rounded-lg shadow-lg shadow-blue-500/40
-      hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=edukasi">
-          <h1 class=" font-semibold" style="text-align: center;">Edukasi</h1>
-        </a>
-
-        <a class="kategori flex-shrink-0 px-10 py-5 bg-green-500 text-white rounded-lg shadow-lg shadow-green-500/40
-      hover:bg-green-600 hover:shadow-xl hover:shadow-green-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=alam">
-          <h1 class=" font-semibold" style="text-align: center;">Alam</h1>
-        </a>
-
-        <a class="kategori flex-shrink-0 px-10 py-5 bg-orange-500 text-white rounded-lg shadow-lg shadow-orange-500/40
-      hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=kuliner">
-          <h1 class=" font-semibold" style="text-align: center;">Kuliner</h1>
-        </a>
-
-        <a class="kategori flex-shrink-0 px-10 py-5 bg-pink-500 text-white rounded-lg shadow-lg shadow-pink-500/40
-      hover:bg-pink-600 hover:shadow-xl hover:shadow-pink-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=rekreasi" >
-          <h1 class=" font-semibold" style="text-align: center;">Rekreasi</h1>
-        </a>
-
-        <a class="kategori flex-shrink-0 px-10 py-5 bg-purple-500 text-white rounded-lg shadow-lg shadow-purple-500/40
-      hover:bg-purple-600 hover:shadow-xl hover:shadow-purple-500/50 transform hover:scale-105 transition duration-300 ease-out origin-center" href="route.php?p=semua">
-          <h1 class=" font-semibold" style="text-align: center;">Semua</h1>
-        </a>
-
-      </div>
-    </section>
-
-
-    <!-- Paket Wisata Populer -->
-    <section class="mt-10 px-6" id="content">
-        <!-- Card -->
-        <?php require_once "route.php" ?>
-
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 mt-16 px-6 py-10">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div>
-          <h3 class="text-lg font-bold mb-3 text-white">WisataKu</h3>
-          <p>Platform terpercaya untuk menjelajahi keindahan Indonesia dengan paket wisata terbaik.</p>
-          <div class="flex space-x-3">
-            <a href="#" target="_blank">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" class="h-5" alt="Facebook">
-            </a>
-            <a href="#" target="_blank">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" class="h-5" alt="Instagram">
-            </a>
-            <a href="#" target="_blank">
-              <img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" class="h-5" alt="YouTube">
-            </a>
+        <!-- Kanan: Pencarian, Notifikasi, Profil -->
+        <div class="d-flex align-items-center">
+          <!-- Pencarian -->
+          <div class="search-box position-relative">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control" placeholder="Cari...">
           </div>
 
+          <!-- Notifikasi -->
+          <button class="icon-btn">
+            <i class="bi bi-bell"></i>
+          </button>
+
+          <!-- Profil -->
+          <div class="dropdown">
+            <a href="#" class="d-flex align-items-center dropdown-toggle" data-bs-toggle="dropdown">
+              <img src="https://i.pravatar.cc/100" alt="User" class="profile-img">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Profil</a></li>
+              <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Keluar</a></li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h4 class="font-semibold text-white mb-2">Tentang Kami</h4>
-          <ul class="space-y-1">
-            <li><a href="#">Tentang Wisataku</a></li>
-            <li><a href="#">Tim Kami</a></li>
-            <li><a href="#">Karir</a></li>
-          </ul>
+
+      </div>
+    </nav>
+
+    <!-- ========== SIDEBAR ========== -->
+  <div class="app-wrapper">
+    <aside class="app-sidebar custom-sidebar shadow" data-bs-theme="dark">
+        <div class="sidebar-brand">
+            <a href="index.php" class="brand-link">
+                <img src="assets/css/img/AdminLTELogo.png" alt="Logo" height="45" width="45">
+                <span class="brand-text fw-bold">WisataKu</span>
+            </a>
         </div>
-        <div>
-          <h4 class="font-semibold text-white mb-2">Layanan</h4>
-          <ul class="space-y-1">
-            <li><a href="#">Paket Wisata</a></li>
-            <li><a href="#">Tour Guide</a></li>
-          </ul>
+
+        <div class="sidebar-wrapper">
+            <nav class="mt-2">
+                <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="index.php?page=dashboard" class="nav-link">
+                            <i class="nav-icon bi bi-speedometer fs-5"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=paket_wisata" class="nav-link">
+                            <i class="nav-icon bi bi-box-seam fs-5"></i>
+                            <p>Paket Wisata</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=pemesanan" class="nav-link">
+                            <i class="nav-icon bi bi-cart-check-fill fs-5"></i>
+                            <p>Pemesanan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=pengguna" class="nav-link">
+                            <i class="nav-icon bi bi-people-fill fs-5"></i>
+                            <p>Pengguna</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=review" class="nav-link">
+                            <i class="nav-icon bi bi-star-fill fs-5"></i>
+                            <p>Review</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=pengaturan" class="nav-link">
+                            <i class="nav-icon bi bi-gear-fill fs-5"></i>
+                            <p>Pengaturan</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div>
-          <h4 class="font-semibold text-white mb-2">Kontak Kami</h4>
-          <p>Email: hello@wisataku.com</p>
-          <p>Telp: +62 1234 5678</p>
-          <p>Jakarta, Indonesia</p>
+    </aside>
+
+ <!-- ========== MAIN CONTENT ========== -->
+<main class="app-main">
+  <div class="app-content">
+    <div class="dashboard-cards">
+      <div class="card">
+        <div class="icon green"><i class="fas fa-dollar-sign"></i></div>
+        <div class="text">
+        <p>Total Penjualan</p>
+        <h3>Rp 45.2M</h3>   
+        <small>+12.5% dari bulan lalu</small>
         </div>
       </div>
-      <div class="text-center text-sm mt-6 border-t border-gray-700 pt-4">
-        © 2024 WisataKu. Semua hak cipta dilindungi.
+
+      <div class="card">
+        <div class="icon blue"><i class="fas fa-box"></i></div>
+        <div class="text">
+        <p>Paket Wisata</p>
+        <h3>128</h3>      
+        <small>+8 dari bulan lalu</small>
+        </div>
       </div>
+
+      <div class="card">
+        <div class="icon purple"><i class="fas fa-shopping-bag fs-3"></i></div>
+        <div class="text">
+        <p>Pemesanan</p>
+        <h3>1,547</h3>              
+        <small>+15.3% dari bulan lalu</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon orange"><i class="fas fa-users"></i></div>
+        <div class="text">
+        <p>Pengguna Aktif</p>
+        <h3>8,429</h3>             
+        <small>+23.1% dari bulan lalu</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Bagian Kotak Besar di bawah -->
+<div class="row mt-0 g-4">  
+
+    <!-- Kotak Grafik Penjualan -->
+    <div class="col-lg-6">
+        <div class="bg-white shadow-sm rounded p-4 h-100" style="min-height: 350px;">
+            <h4 class="fw-bold mb-2">Grafik Penjualan</h4>
+            <p class="text-muted mb-4">Tren penjualan dalam 6 bulan terakhir</p>
+            <div class="h-75 bg-light rounded p-3">
+              <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kotak Pemesanan Terbaru -->
+    <div class="col-lg-6">
+        <div class="bg-white shadow-sm rounded p-4 h-100" style="min-height: 350px;">
+            <h4 class="fw-bold mb-2">Pemesanan Terbaru</h4>
+            <p class="text-muted mb-4">5 pemesanan terakhir</p>
+
+            <!-- List Pesanan -->
+            <div class="d-flex flex-column gap-3">
+
+                <div class="bg-light d-flex justify-content-between align-items-center p-3 rounded">
+                    <div>
+                        <p class="fw-semibold mb-0">Ahmad Fauzi</p>
+                        <small class="text-muted">Paket Wisata Bali 3D2N</small>
+                    </div>
+                    <span class="badge rounded-pill bg-primary px-3 py-2">confirmed</span>
+                </div>
+
+                <div class="bg-light d-flex justify-content-between align-items-center p-3 rounded">
+                    <div>
+                        <p class="fw-semibold mb-0">Siti Nurhaliza</p>
+                        <small class="text-muted">Tour Bromo Tengger</small>
+                    </div>
+                    <span class="badge rounded-pill bg-warning text-dark px-3 py-2">pending</span>
+                </div>
+
+                <div class="bg-light d-flex justify-content-between align-items-center p-3 rounded">
+                    <div>
+                        <p class="fw-semibold mb-0">Budi Santoso</p>
+                        <small class="text-muted">Wisata Budaya Yogyakarta</small>
+                    </div>
+                    <span class="badge rounded-pill bg-success px-3 py-2">paid</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</main>
+
+
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="app-footer">
+        <div class="float-end d-none d-sm-inline">Version 1.0</div>
+        <strong>Copyright &copy; 2025 <a href="https://adminlte.io"
+        class="text-decoration-none">Administrator</a>.</strong> All rights reserved.
     </footer>
+</div>
 
-  </div> <!-- end pt-20 -->
+<!-- ========== SCRIPTS ========== -->
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+<script src="assets/js/adminlte.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('salesChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+        datasets: [{
+            label: 'Grafik Pengungjung (Rp)',
+            data: [7500000, 8200000, 9500000, 8800000, 10200000, 12000000],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(230, 127, 25, 0.5)'
+            ],
+            borderWidth: 3,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' }
+        }
+    }
+});
+</script>
+
 
 </body>
-<script>
-  document.querySelector('a[href="#kategori"]').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#kategori').scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  });
-
-</script>
-<script src="kategori/kategori.js"></script>
-
 </html>
 
