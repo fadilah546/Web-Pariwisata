@@ -32,14 +32,16 @@
 
     <div class="hidden md:flex-1 md:flex md:justify-center">
       <div class="flex w-1/2 items-center bg-white/30 border border-white/20 rounded-full overflow-hidden 
-                backdrop-blur-xl shadow-inner shadow-white/10 
-                transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-blue-400/50">
-        <input type="text" placeholder="Cari destinasi..."
-          class="flex-grow px-4 py-2 bg-transparent text-gray-900 placeholder-gray-600 outline-none">
-        <button class="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-medium px-5 py-2 rounded-r-full 
-                     hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20">
+      backdrop-blur-xl shadow-inner shadow-white/10 
+      transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-blue-400/50">
+      <form action="index.php?p=search" method="POST">
+          <input type="text" placeholder="Cari destinasi..." name="search"
+          class="flex-grow px-4 py-2 bg-transparent text-gray-900 placeholder-gray-600 outline-none" autocomplete="off">
+        <button type="submit" class="bg-gradient-to-r from-blue-400 to-blue-500 text-white font-medium px-5 py-2 rounded-r-full 
+                     hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md shadow-blue-500/20" name="cari" >
           Cari
         </button>
+      </form>
       </div>
     </div>
 
