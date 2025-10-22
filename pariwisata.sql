@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Oct 20, 2025 at 03:32 AM
+-- Generation Time: Oct 22, 2025 at 01:18 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id_admin` int NOT NULL,
   `username_admin` varchar(30) NOT NULL,
-  `no_hp` varchar(15) NOT NULL,
-  `password` varchar(8) NOT NULL,
+  `email` varchar(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,8 +39,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username_admin`, `no_hp`, `password`, `created_at`) VALUES
-(1, 'admin1', '08987654321', 'admin123', '2025-10-19 11:13:56');
+INSERT INTO `admin` (`id_admin`, `username_admin`, `email`, `password`, `created_at`) VALUES
+(1, 'admin1', 'admin@gmail.com', '$2y$10$DdEBSQYuhmqtZAe0eoUrVOxsAKy8uuTkOUM2aQ51bNEbAPmvN72H6', '2025-10-19 11:13:56');
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`id_admin`, `username_admin`, `no_hp`, `password`, `created
 CREATE TABLE `detail_wisata` (
   `id` int NOT NULL,
   `id_wisata` int DEFAULT NULL,
-  `fasilitas` text
+  `fasilitas` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -59,8 +59,8 @@ CREATE TABLE `detail_wisata` (
 --
 
 INSERT INTO `detail_wisata` (`id`, `id_wisata`, `fasilitas`) VALUES
-(1, 1, 'Area parkir luas'),
-(2, 1, 'Toilet & ruang bilas bersih');
+(1, 1, ''),
+(2, 1, '');
 
 -- --------------------------------------------------------
 
@@ -90,10 +90,17 @@ CREATE TABLE `user` (
   `id_user` int NOT NULL,
   `nama` varchar(50) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `no_hp` varchar(15) NOT NULL,
-  `gender` enum('laki laki','perempuan','tidak memberitahu','') NOT NULL,
-  `password` varchar(8) NOT NULL
+  `email` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `password` varchar(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama`, `username`, `email`, `password`) VALUES
+(1, 'fadilah', 'fad123', 'fadilah@gmail.com', '$2y$10$DGR8WGitZZgPh4yGBRyr4OObxEjzQFr8rgnaso9Si8zlthiEOrE42'),
+(2, 'upin', 'upin', 'upin123@gmail.com', '$2y$10$tb.orgP5O8ig91sXk6ZLDuqflVpp09p.BxFxHmXvANlWq1hJ1fswS');
 
 -- --------------------------------------------------------
 
@@ -133,7 +140,7 @@ INSERT INTO `wisata` (`id_wisata`, `id_admin`, `nama_wisata`, `kategori`, `harga
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`),
   ADD UNIQUE KEY `username_admin` (`username_admin`),
-  ADD UNIQUE KEY `no_hp` (`no_hp`);
+  ADD UNIQUE KEY `no_hp` (`email`);
 
 --
 -- Indexes for table `detail_wisata`
@@ -157,7 +164,7 @@ ALTER TABLE `pesanan`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `no_hp` (`no_hp`);
+  ADD UNIQUE KEY `no_hp` (`email`);
 
 --
 -- Indexes for table `wisata`
@@ -192,7 +199,7 @@ ALTER TABLE `pesanan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wisata`
