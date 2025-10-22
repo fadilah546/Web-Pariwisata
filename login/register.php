@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -42,45 +43,10 @@
   <div class="glass-panel flex flex-col md:flex-row rounded-3xl overflow-hidden max-w-5xl w-full">
 
     <!-- Kiri -->
-    <div class="w-full md:w-1/2 flex justify-center items-center p-10">
-      <div class="register-card w-full max-w-sm rounded-3xl p-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Create Account</h2>
-        <p class="text-sm text-gray-600 mb-6">Sign up to get started</p>
+    
+       <?php require_once "form_register.php" ?>
 
-        <form>
-          <div class="mb-4">
-            <input type="text" placeholder="Full Name"
-              class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
-          </div>
-          <div class="mb-4">
-            <input type="email" placeholder="Email"
-              class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
-          </div>
-          <div class="mb-4">
-            <input type="text" placeholder="Username"
-              class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
-          </div>
-          <div class="mb-4">
-            <input type="password" placeholder="Password"
-              class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
-          </div>
-          <div class="mb-6">
-            <input type="password" placeholder="Confirm Password"
-              class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
-          </div>
-
-          <button type="submit"
-            class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold shadow-md hover:opacity-90 transition">
-            SIGN UP
-          </button>
-        </form>
-
-        <p class="text-center text-sm text-gray-700 mt-6">
-          Already have an account? 
-          <a href="#" class="text-cyan-600 font-semibold hover:underline">Sign In</a>
-        </p>
-      </div>
-    </div>
+        
 
     <!-- Kanan -->
     <div class="w-full md:w-1/2 flex flex-col justify-center items-start p-10 bg-gradient-to-br from-blue-600/70 via-cyan-400/60 to-indigo-400/60 text-white">
