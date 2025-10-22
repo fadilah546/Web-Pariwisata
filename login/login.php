@@ -1,0 +1,188 @@
+
+ <!DOCTYPE html>
+ <html lang="id">
+
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login | WisataKu</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+     body {
+       font-family: 'Poppins', sans-serif;
+       background: linear-gradient(120deg, #9fd3ff, #c2ffe9, #a7b9ff);
+       background-size: 200% 200%;
+       animation: gradientShift 10s ease infinite;
+     }
+
+     @keyframes gradientShift {
+       0% {
+         background-position: 0% 50%;
+       }
+
+       50% {
+         background-position: 100% 50%;
+       }
+
+       100% {
+         background-position: 0% 50%;
+       }
+     }
+
+     .glass-panel {
+       background: rgba(255, 255, 255, 0.18);
+       backdrop-filter: blur(25px) saturate(150%);
+       border: 1px solid rgba(255, 255, 255, 0.3);
+       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+     }
+
+     .login-card {
+       background: rgba(255, 255, 255, 0.35);
+       backdrop-filter: blur(35px) saturate(180%);
+       border: 1px solid rgba(255, 255, 255, 0.35);
+       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+     }
+
+     /* --- Liquid Select --- */
+     .liquid-select {
+       position: relative;
+       overflow: hidden;
+       background: rgba(255, 255, 255, 0.25);
+       backdrop-filter: blur(20px);
+       border: 1px solid rgba(255, 255, 255, 0.3);
+       border-radius: 16px;
+       transition: all 0.3s ease;
+       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+     }
+
+     .liquid-select select {
+       width: 100%;
+       padding: 12px 40px 12px 16px;
+       font-size: 1rem;
+       color: #1a1a1a;
+       background: transparent;
+       border: none;
+       appearance: none;
+       outline: none;
+       z-index: 2;
+       position: relative;
+       cursor: pointer;
+     }
+
+     .liquid-select::after {
+       content: "";
+       position: absolute;
+       top: 50%;
+       right: 16px;
+       transform: translateY(-50%);
+       width: 0;
+       height: 0;
+       border-left: 6px solid transparent;
+       border-right: 6px solid transparent;
+       border-top: 6px solid #555;
+       pointer-events: none;
+       opacity: 0.7;
+       transition: all 0.3s ease;
+     }
+
+     .liquid-select:hover {
+       background: rgba(255, 255, 255, 0.35);
+       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+       transform: scale(1.02);
+     }
+
+     .liquid-select:focus-within::after {
+       transform: translateY(-50%) rotate(180deg);
+       opacity: 1;
+     }
+
+     .liquid-select::before {
+       content: "";
+       position: absolute;
+       top: -50%;
+       left: -50%;
+       width: 200%;
+       height: 200%;
+       background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3), transparent 60%);
+       transform: translateX(-100%) scale(0);
+       opacity: 0;
+       transition: transform 0.6s ease, opacity 0.6s ease;
+     }
+
+     .liquid-select:hover::before {
+       transform: translateX(0) scale(1);
+       opacity: 1;
+     }
+   </style>
+ </head>
+
+ <body class="flex items-center justify-center min-h-screen p-6">
+
+   <!-- Wrapper utama -->
+   <div class="glass-panel flex flex-col md:flex-row rounded-3xl overflow-hidden max-w-5xl w-full">
+
+     <!-- Kiri -->
+     <div class="w-full md:w-1/2 flex flex-col justify-center items-start p-10 bg-gradient-to-br from-blue-600/70 via-cyan-400/60 to-indigo-400/60 text-white">
+       <div class="max-w-sm">
+         <div class="flex items-center space-x-2 mb-10">
+           <div class="w-8 h-8 rounded-lg bg-white/30 flex items-center justify-center">
+             <div class="w-4 h-4 border-2 border-white rounded-sm"></div>
+           </div>
+           <span class="text-lg font-semibold tracking-wide">COMPANY</span>
+         </div>
+         <h1 class="text-4xl font-bold mb-3 drop-shadow-md">Welcome Back!</h1>
+         <p class="text-base opacity-90 leading-relaxed">
+           To keep connected with us please login with your personal information.
+         </p>
+         <p class="text-center text-sm text-gray-700 mt-6">
+           Don’t have an account?
+           <a href="register.php" class="text-cyan-600 font-semibold hover:underline">Sign Up</a>
+         </p>
+       </div>
+     </div>
+
+     <div class="w-full md:w-1/2 flex justify-center items-center p-10">
+       <div class="login-card w-full max-w-sm rounded-3xl p-8">
+         <h2 class="text-2xl font-bold text-gray-800 mb-2">Login</h2>
+         <p class="text-sm text-gray-600 mb-6">Sign in to your account</p>
+         <?php if (!empty($_GET['msg'])): ?>
+           <p class="text-sm text-red-600 mb-6"><?= htmlspecialchars($_GET['msg']) ?></p>
+         <?php endif; ?>
+         <form action="form_login.php" method="POST">
+           <!-- Pilihan Role -->
+           <div class="mb-4 liquid-select">
+             <select name="role" class="form-select">
+               <option value="" disabled selected>Select Role</option>
+               <option value="user">User</option>
+               <option value="admin">Admin</option>
+             </select>
+           </div>
+
+           <div class="mb-4">
+             <input type="text" placeholder="Username / Email" name="username"
+               class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
+           </div>
+           <div class="mb-4">
+             <input type="password" placeholder="Password" name="password"
+               class="w-full px-4 py-3 rounded-xl bg-white/60 text-gray-800 placeholder-gray-500 border border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-400">
+           </div>
+
+           <div class="flex justify-between items-center mb-6 text-sm text-gray-700">
+             <label class="flex items-center space-x-2">
+               <input type="checkbox" class="accent-cyan-500">
+               <span>Remember me</span>
+             </label>
+             <a href="#" class="hover:underline text-cyan-600">Forgot password?</a>
+           </div>
+
+           <button type="submit" name="login"
+             class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold shadow-md hover:opacity-90 transition">
+             SIGN IN
+           </button>
+         </form>
+       </div>
+     </div>
+   </div>
+ </body>
+
+ </html>
