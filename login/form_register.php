@@ -83,7 +83,8 @@
          </form>
          <p class="text-center text-sm text-gray-700 mt-6">
              Already have an account?
-             <a href="#" class="text-cyan-600 font-semibold hover:underline">Sign In</a>
+             <a href="login.php" class="text-cyan-600 font-semibold hover:underline">Sign In</a>
          </p>
      </div>
+
  </div>
