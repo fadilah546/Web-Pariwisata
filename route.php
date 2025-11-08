@@ -1,28 +1,27 @@
-<?php  
-$p=$_GET['p'];
-switch($p){
-    case 'semua':
-        require_once "kategori/semua.php";
-        break;
-    case 'edukasi':
-        require_once "kategori/edukasi.php";
-        break;
-    case 'kuliner':
-        require_once "kategori/kuliner.php";
-        break;
-    case 'alam':
-        require_once "kategori/alam.php";
-        break;
-    case 'rekreasi':
-        require_once "kategori/rekreasi.php";
-        break;
-    case 'search':
-        require_once "kategori/search.php";
-        break;
-    
-default:
-    require_once "kategori/semua.php";
-    break;
-}
+<?php
+$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
+switch ($page) {
+    case 'dashboard':
+        include 'pages/dashboard.php';
+        break;
+    case 'paket_wisata':
+        include 'pages/paketwisata.php';
+        break;
+    case 'pemesanan':
+        include 'pages/pemesanan.php';
+        break;
+    case 'pengguna':
+        include 'pages/pengguna.php';
+        break;
+    case 'review':
+        include 'pages/review.php';
+        break;
+    case 'pengaturan':
+        include 'pages/pengaturan.php';
+        break;
+    default:
+        echo "<h3>Selamat Datang di Dashboard</h3>";
+        break;
+}
 ?>
