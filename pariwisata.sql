@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Oct 22, 2025 at 01:18 AM
+-- Generation Time: Nov 19, 2025 at 03:16 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -32,6 +32,7 @@ CREATE TABLE `admin` (
   `username_admin` varchar(30) NOT NULL,
   `email` varchar(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `password` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `role` enum('pengelola','pemerintah') NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,28 +40,29 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username_admin`, `email`, `password`, `created_at`) VALUES
-(1, 'admin1', 'admin@gmail.com', '$2y$10$DdEBSQYuhmqtZAe0eoUrVOxsAKy8uuTkOUM2aQ51bNEbAPmvN72H6', '2025-10-19 11:13:56');
+INSERT INTO `admin` (`id_admin`, `username_admin`, `email`, `password`, `role`, `created_at`) VALUES
+(1, 'admin1', 'admin@gmail.com', '$2y$10$DdEBSQYuhmqtZAe0eoUrVOxsAKy8uuTkOUM2aQ51bNEbAPmvN72H6', 'pengelola', '2025-10-19 11:13:56');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_wisata`
+-- Table structure for table `kunjungan`
 --
 
-CREATE TABLE `detail_wisata` (
-  `id` int NOT NULL,
-  `id_wisata` int DEFAULT NULL,
-  `fasilitas` text NOT NULL
+CREATE TABLE `kunjungan` (
+  `id_kunjungan` int NOT NULL,
+  `id_wisata` int NOT NULL,
+  `tanggal` date NOT NULL,
+  `jumlah_kunjungan` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `detail_wisata`
+-- Dumping data for table `kunjungan`
 --
 
-INSERT INTO `detail_wisata` (`id`, `id_wisata`, `fasilitas`) VALUES
-(1, 1, ''),
-(2, 1, '');
+INSERT INTO `kunjungan` (`id_kunjungan`, `id_wisata`, `tanggal`, `jumlah_kunjungan`) VALUES
+(1, 1, '2025-10-01', 40),
+(2, 1, '2025-10-02', 60);
 
 -- --------------------------------------------------------
 
@@ -79,6 +81,21 @@ CREATE TABLE `pesanan` (
   `total_harga` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id_rating` int NOT NULL,
+  `id_wisata` int NOT NULL,
+  `id_user` int NOT NULL,
+  `rate` int NOT NULL,
+  `komentar` text NOT NULL,
+  `tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -116,6 +133,7 @@ CREATE TABLE `wisata` (
   `harga_weekday` int NOT NULL,
   `harga_weekend` int NOT NULL,
   `deskripsi` text NOT NULL,
+  `fasilitas` text NOT NULL,
   `lokasi` varchar(200) NOT NULL,
   `gambar` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -124,11 +142,11 @@ CREATE TABLE `wisata` (
 -- Dumping data for table `wisata`
 --
 
-INSERT INTO `wisata` (`id_wisata`, `id_admin`, `nama_wisata`, `kategori`, `harga_weekday`, `harga_weekend`, `deskripsi`, `lokasi`, `gambar`) VALUES
-(1, 1, 'Owabong Waterpark', 'rekreasi', 25000, 30000, 'Nikmati keseruan di waterpark terbesar Purbalingga! Owabong menawarkan berbagai wahana air seru seperti kolam arus, ember tumpah, dan waterboom, lengkap dengan area bermain, tempat makan, dan penginapan. Cocok untuk liburan keluarga.', 'Bojongsari, Purbalingga', 'owabong.jpeg'),
-(5, 1, 'Situ Tirta Marta', 'alam', 5000, 7000, 'Rasakan ketenangan dan kesejukan danau alami Situ Tirta Marta. Cocok untuk piknik santai, memancing, atau sekadar duduk menikmati pemandangan hijau yang memanjakan mata. Spot foto Instagramable siap membuat feed-mu makin cantik!', 'Kutasari, Purbalingga', 'situ_tirta.jpeg'),
-(6, 1, 'Golaga - Goa Lawa Purbalingga', 'alam', 20000, 25000, 'Jelajahi keindahan alam bawah tanah di Goa Lawa Purbalingga, gua alami hasil aliran lava purba di kaki Gunung Slamet. Dengan stalaktit dan stalagmit yang menakjubkan, pencahayaan warna-warni, serta spot foto estetik, tempat ini cocok untuk kamu yang suka petualangan sekaligus ingin menikmati suasana sejuk khas pegunungan.', 'Karangreja, Purbalingga', 'golaga.jpeg'),
-(7, 1, 'Bromo', 'alam', 5, 4, '', 'Jawa Timur', 'bromo.jpg');
+INSERT INTO `wisata` (`id_wisata`, `id_admin`, `nama_wisata`, `kategori`, `harga_weekday`, `harga_weekend`, `deskripsi`, `fasilitas`, `lokasi`, `gambar`) VALUES
+(1, 1, 'Owabong Waterpark', 'rekreasi', 25000, 30000, 'Nikmati keseruan di waterpark terbesar Purbalingga! Owabong menawarkan berbagai wahana air seru seperti kolam arus, ember tumpah, dan waterboom, lengkap dengan area bermain, tempat makan, dan penginapan. Cocok untuk liburan keluarga.', '', 'Bojongsari, Purbalingga', 'owabong.jpeg'),
+(5, 1, 'Situ Tirta Marta', 'alam', 5000, 7000, 'Rasakan ketenangan dan kesejukan danau alami Situ Tirta Marta. Cocok untuk piknik santai, memancing, atau sekadar duduk menikmati pemandangan hijau yang memanjakan mata. Spot foto Instagramable siap membuat feed-mu makin cantik!', '', 'Kutasari, Purbalingga', 'situ_tirta.jpeg'),
+(6, 1, 'Golaga - Goa Lawa Purbalingga', 'alam', 20000, 25000, 'Jelajahi keindahan alam bawah tanah di Goa Lawa Purbalingga, gua alami hasil aliran lava purba di kaki Gunung Slamet. Dengan stalaktit dan stalagmit yang menakjubkan, pencahayaan warna-warni, serta spot foto estetik, tempat ini cocok untuk kamu yang suka petualangan sekaligus ingin menikmati suasana sejuk khas pegunungan.', '', 'Karangreja, Purbalingga', 'golaga.jpeg'),
+(7, 1, 'Bromo', 'alam', 5, 4, '', '', 'Jawa Timur', 'bromo.jpg');
 
 --
 -- Indexes for dumped tables
@@ -143,10 +161,10 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `no_hp` (`email`);
 
 --
--- Indexes for table `detail_wisata`
+-- Indexes for table `kunjungan`
 --
-ALTER TABLE `detail_wisata`
-  ADD PRIMARY KEY (`id`),
+ALTER TABLE `kunjungan`
+  ADD PRIMARY KEY (`id_kunjungan`) USING BTREE,
   ADD KEY `id_wisata` (`id_wisata`);
 
 --
@@ -157,6 +175,14 @@ ALTER TABLE `pesanan`
   ADD UNIQUE KEY `no_pesanan` (`no_pesanan`),
   ADD KEY `fk_pesanan_wisata` (`id_wisata`),
   ADD KEY `fk_pesanan_user` (`id_user`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id_rating`),
+  ADD KEY `id_wisata` (`id_wisata`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `user`
@@ -184,16 +210,22 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `detail_wisata`
+-- AUTO_INCREMENT for table `kunjungan`
 --
-ALTER TABLE `detail_wisata`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `kunjungan`
+  MODIFY `id_kunjungan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
   MODIFY `id_pesanan` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id_rating` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -212,10 +244,10 @@ ALTER TABLE `wisata`
 --
 
 --
--- Constraints for table `detail_wisata`
+-- Constraints for table `kunjungan`
 --
-ALTER TABLE `detail_wisata`
-  ADD CONSTRAINT `detail_wisata_ibfk_1` FOREIGN KEY (`id_wisata`) REFERENCES `wisata` (`id_wisata`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `kunjungan`
+  ADD CONSTRAINT `kunjungan_ibfk_1` FOREIGN KEY (`id_wisata`) REFERENCES `wisata` (`id_wisata`);
 
 --
 -- Constraints for table `pesanan`
@@ -223,6 +255,13 @@ ALTER TABLE `detail_wisata`
 ALTER TABLE `pesanan`
   ADD CONSTRAINT `fk_pesanan_wisata` FOREIGN KEY (`id_wisata`) REFERENCES `wisata` (`id_wisata`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`id_wisata`) REFERENCES `wisata` (`id_wisata`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `wisata`
