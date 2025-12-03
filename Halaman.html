@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WisataKu - Detail Destinasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-sans bg-gray-50">
+
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/20 border-b border-white/30 shadow-lg p-4
+        flex items-center justify-between transition-all duration-500 ease-in-out">
+        <div class="flex items-center space-x-2">
+            <img src="assets/images/logo.png" alt="WisataKu"
+                class="h-12 w-12 rounded-2xl shadow-md ring-1 ring-white/30">
+            <span class="font-semibold text-lg text-gray-900 drop-shadow-sm">WisataKu</span>
+        </div>
+        <div class="hidden md:flex flex-1 justify-center">
+            </div>
+        <div class="hidden md:flex space-x-3">
+            <a class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
+                hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10" href="login/login.php">
+                Masuk
+            </a>
+            <button
+                class="px-4 py-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 text-gray-900 
+                hover:bg-white/50 transition-all duration-300 shadow-sm shadow-white/10">
+                Keranjang
+            </button>
+        </div>
+        <div class="flex md:hidden space-x-3">
+            <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                    hover:bg-white/50 transition-all duration-300">🔍</button>
+            <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                    hover:bg-white/50 transition-all duration-300">🛒</button>
+            <button class="p-2 rounded-full bg-white/30 backdrop-blur-md border border-white/20 
+                    hover:bg-white/50 transition-all duration-300">👤</button>
+        </div>
+    </nav>
+    <main class="pt-24 pb-10 px-4 md:px-10 lg:px-20">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Gunung Bromo - Keindahan Sang Penjaga Jawa</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+                <div class="lg:col-span-2 md:col-span-2 h-72">
+                    <img src="assets/images/bromo.jpg" alt="Bromo Utama"
+                        class="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-300 hover:scale-[1.01]">
+                </div>
+                <div class="h-72">
+                    <img src="assets/images/bromo-2.jpg" alt="Bromo Detail 1"
+                        class="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-300 hover:scale-[1.01]">
+                </div>
+                <div class="h-72">
+                    <img src="assets/images/bromo-3.jpg" alt="Bromo Detail 2"
+                        class="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-300 hover:scale-[1.01]">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Deskripsi Destinasi</h2>
+                        <p class="text-gray-600 mb-4">
+                            Gunung Bromo adalah ikon wisata Jawa Timur, terkenal dengan pemandangan matahari terbitnya yang spektakuler. Terletak di kawasan Taman Nasional Bromo Tengger Semeru, Bromo menyajikan kombinasi unik lautan pasir yang luas, kaldera, dan kawah yang masih aktif.
+                        </p>
+                        <p class="text-gray-600">
+                            Pengunjung dapat menikmati sensasi menunggang kuda melintasi lautan pasir atau mendaki ratusan anak tangga menuju kawah.
+                        </p>
+                        <ul class="mt-4 text-gray-700 space-y-2">
+                            <li class="flex items-center"><span class="text-orange-500 mr-2">⭐</span> Rating: 4.8/5 (2.1k Ulasan)</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-2">📍</span> Lokasi: Probolinggo, Jawa Timur</li>
+                            <li class="flex items-center"><span class="text-blue-500 mr-2">🗺️</span> Kategori: Alam, Petualangan</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Pilihan Paket</h2>
+                        <div class="flex items-center justify-between p-4 mb-3 border border-gray-200 rounded-lg transition-all duration-300 hover:shadow-lg">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Paket Sunrise Bromo (1 Hari)</h3>
+                                <p class="text-sm text-gray-500">Transportasi Jeep, Tiket Masuk, Sarapan</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-orange-600">Rp 350.000</p>
+                                <button class="mt-1 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 text-white text-sm font-medium hover:from-blue-500 hover:to-blue-600 transition-all">
+                                    Pesan
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 mb-3 border border-gray-200 rounded-lg transition-all duration-300 hover:shadow-lg">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Paket Bromo Exclusive (2 Hari 1 Malam)</h3>
+                                <p class="text-sm text-gray-500">Penginapan 1 Malam, Transportasi Private, Guide Lokal</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-orange-600">Rp 1.200.000</p>
+                                <button class="mt-1 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 text-white text-sm font-medium hover:from-blue-500 hover:to-blue-600 transition-all">
+                                    Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sticky top-24 h-fit">
+                    <div class="bg-white p-6 rounded-xl shadow-2xl border border-white/50 backdrop-blur-xl">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Mulai Petualangan Anda</h3>
+                        <div class="space-y-3">
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" placeholder="Tanggal Keberangkatan">
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option>Pilih Jumlah Orang</option>
+                                <option>1 Orang</option>
+                                <option>2 Orang</option>
+                                <option>3-5 Orang</option>
+                            </select>
+                            <button class="w-full py-3 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 
+                                hover:from-orange-500 hover:to-orange-700 text-white font-semibold 
+                                shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                                Tambah ke Keranjang
+                            </button>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200 text-center">
+                            <p class="text-sm text-gray-500">Butuh bantuan? Hubungi customer service kami.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-300 mt-16 px-6 py-10">
+        </footer>
+    </body>
+</html>
