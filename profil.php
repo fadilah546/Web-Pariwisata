@@ -1,4 +1,16 @@
-body {
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya | WisataKu</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+    body {
     font-family: Arial, sans-serif;
     background: #e8f1ff; /* Biru lembut */
     margin: 0;
@@ -110,9 +122,6 @@ body {
     align-items: center;
     justify-content: space-between; /* INFO di kiri, EDIT di kanan */
     gap: 15px;
-    padding: 20px;
-    background: #fff;
-    flex-wrap: wrap;
 }
 
 .avatar-big {
@@ -240,3 +249,55 @@ body {
     border-color: #1a73e8;
     outline: none;
 }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile-box">
+            <img src="profil.jpeg" width="90" class="img-circle">
+            <h3>John Doe</h3>
+            <p class="level">Traveler Pro</p>
+        </div>
+
+        <nav class="menu">
+            <a class="nav-link" href="profil.php?page=profil" name="profil"><i class="bi bi-person"></i> Profil Saya</a>
+            <a href="profil.php?page=pesanan" class="nav-link"><i class="bi bi-bag"></i> Pesanan Saya</a>
+            <a><i class="bi bi-gear"></i> Pengaturan</a>
+        </nav>
+
+        <a href="index.php" class="home-link"><i class="bi bi-house"></i> Kembali ke Beranda</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <?php
+        // Ambil parameter "page" dari URL
+          $page = isset($_GET['page']) ? $_GET['page'] : 'profil';
+
+        // Load halaman sesuai parameter
+        switch ($page) {
+        case 'profil':
+          include 'profil_saya.php';
+          $tombol_profil = "active";
+          break;
+        case 'pesanan':
+          include 'pesanan.php';
+          $tombol_pesan = "active";
+          break;
+
+        default:
+            include 'profil_saya.php';
+            break;
+        }
+?>
+
+</div>
+
+</body>
+
+
+</html>
